@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 08:58:21 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/10/14 19:12:32 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/11/06 21:05:24 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	pushing_b(t_list **stack_a, t_list **stack_b, int *arr, int seq)
 			i = 0;
 		}
 	}
-	print_list(stack_a);
-	print_list(stack_b);
+	print_list_a(stack_a);
+	print_list_b(stack_b);
 }
 
 int	*create_lis_arr(t_list **stack_a, t_list **stack_b, int value, int seq)
@@ -89,6 +89,9 @@ int	*create_lis_arr(t_list **stack_a, t_list **stack_b, int value, int seq)
 	// 	i++;
 	// }
 	pushing_b(stack_a, stack_b, arr, seq);
+	printf("\nmove_b: %d\n", check_stack_b_moves(*stack_a, *stack_b));
+	printf("\nmove_a: %d\n", check_stack_a_moves(*stack_a, *stack_b));
+	printf("\nmove_both: %d\n", check_both_moves(*stack_a, *stack_b));
 	return (arr);
 }
 
@@ -135,6 +138,6 @@ void	cluster_sort(t_list **stack_a, t_list **stack_b)
 	printf("seq: %d\n", seq_attuale);
 	printf("value: %d\n", value);
 	create_lis_arr(stack_a, stack_b, value, seq_attuale);
-	print_list(stack_a);
+	// print_list(stack_a);
 	// printf("me seq: %d\nme num: %d\n", seq_attuale, value);
 }

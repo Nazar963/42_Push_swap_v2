@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 20:55:13 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/10/12 18:00:30 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:42:10 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,12 @@ void	cluster_sort(t_list **stack_a, t_list **stack_b);
 void	ft_free(char **str);
 
 /* --------------------------------- utils.c -------------------------------- */
-void	print_list(t_list **stack_a);
+void	print_list_a(t_list **stack_a);
+void	print_list_b(t_list **stack_a);
+
+/* ------------------------------ computation.c ----------------------------- */
+int	check_stack_b_moves(t_list *stack_a, t_list *stack_b);
+int	check_stack_a_moves(t_list *stack_a, t_list *stack_b);
+int	check_both_moves(t_list *stack_a, t_list *stack_b);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/21 15:24:48 by naal-jen          #+#    #+#              #
-#    Updated: 2023/10/12 17:59:15 by naal-jen         ###   ########.fr        #
+#    Updated: 2023/11/06 20:43:01 by naal-jen         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,9 +18,9 @@ AR = ar cr
 # ARF = -rcs
 NAME = push_swap.a
 
-SRC = main.c main_helper.c push.c reverse_rotate.c rotate.c swap.c check_if_sorted.c create_list.c create_list_helper.c checks.c cluster_sort.c sort_5.c ft_free.c utils.c
+SRC = main.c main_helper.c push.c reverse_rotate.c rotate.c swap.c check_if_sorted.c create_list.c create_list_helper.c checks.c cluster_sort.c sort_5.c ft_free.c utils.c computation.c
 # OBJ = $(SRC:.c=.o)
-OBJ = main.o main_helper.o push.o reverse_rotate.o rotate.o swap.o check_if_sorted.o create_list.o create_list_helper.o checks.o cluster_sort.o sort_5.o ft_free.o utils.o
+OBJ = main.o main_helper.o push.o reverse_rotate.o rotate.o swap.o check_if_sorted.o create_list.o create_list_helper.o checks.o cluster_sort.o sort_5.o ft_free.o utils.o computation.o
 
 all: libft $(NAME) compile
 

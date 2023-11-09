@@ -6,45 +6,48 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 12:28:24 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/10/13 17:17:27 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/11/06 20:50:19 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_list(t_list **stack_a)
+void	print_list_a(t_list **stack_a)
 {
-	// int	min;
+	t_list *tmp_a;
 	int	i;
 
 	i = 0;
-
+	tmp_a = *stack_a;
 	// min = *(int *)stack_a->content;
-	while (*stack_a != NULL)
+	printf("\n");
+	while (tmp_a != NULL)
 	{
 		// if (*(int *)stack_a->content < min)
 		// 	min = *(int *)stack_a->content;
-		printf("stack_a[%d]: %d\n", i, *(int *)(*stack_a)->content);
-		*stack_a = (*stack_a)->next;
+		printf("stack_a[%d]: %d\n", i, *(int *)tmp_a->content);
+		tmp_a = tmp_a->next;
 		i++;
 	}
 	// return (min);
 }
-// void	print_list_b(t_list **stack_a)
-// {
-// 	// int	min;
-// 	int	i;
 
-// 	i = 0;
+void	print_list_b(t_list **stack_b)
+{
+	t_list	*tmp_b;
+	int	i;
 
-// 	// min = *(int *)stack_a->content;
-// 	while (*stack_a != NULL)
-// 	{
-// 		// if (*(int *)stack_a->content < min)
-// 		// 	min = *(int *)stack_a->content;
-// 		printf("stack_a[%d]: %d\n", i, *(int *)(*stack_a)->content);
-// 		*stack_a = (*stack_a)->next;
-// 		i++;
-// 	}
-// 	// return (min);
-// }
+	i = 0;
+	tmp_b = *stack_b;
+	// min = *(int *)stack_a->content;
+	printf("\n");
+	while (tmp_b != NULL)
+	{
+		// if (*(int *)stack_a->content < min)
+		// 	min = *(int *)stack_a->content;
+		printf("stack_b[%d]: %d\n", i, *(int *)(tmp_b)->content);
+		tmp_b = (tmp_b)->next;
+		i++;
+	}
+	// return (min);
+}
