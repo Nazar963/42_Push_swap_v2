@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 10:02:01 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/10/12 18:35:40 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/11/11 17:45:38 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,18 @@ int	ft_check_duplicates(int ac, char **av)
 	return (res);
 }
 
+t_instructions *instructions(void)
+{
+	static t_instructions instructions = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+	return (&instructions);
+}
+
 int	main(int ac, char **av)
 {
-	t_list	*stack_a;
-	t_list	*stack_b;
-	t_loco	*loco;
+	t_list			*stack_a;
+	t_list			*stack_b;
+	t_loco			*loco;
 
 	stack_a = NULL;
 	stack_b = NULL;
@@ -107,3 +114,5 @@ int	main(int ac, char **av)
 	if (ac > 2)
 		free(loco);
 }
+
+// 4 8 2 9 12 1 27 13 32 10

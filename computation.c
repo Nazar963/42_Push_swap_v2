@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 20:07:17 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/11/06 21:06:37 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/11/11 19:04:22 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,17 @@ int	check_stack_b_moves(t_list *stack_a, t_list *stack_b)
 {
 	t_list	*tmp_a;
 	t_list	*tmp_b;
-	int			count;
-	int			target;
+	int		target;
 
-	count = 0;
 	target = 0;
 	if (*(int *)stack_a->content == 0)
 	{
-		count++;
-		tmp_a = stack_a->next;
+		// if (*(int *)stack_a->next->content - 1 == *(int *)stack_a->content)
+		return (0);
+		//* if the stack_a->next->content - 1 == stack_a->content exit;
+		// count++;
+		// tmp_a = stack_a->next;
+		// tmp_b = stack_b;
 	}
 	else
 	{
@@ -42,7 +44,13 @@ int	check_stack_b_moves(t_list *stack_a, t_list *stack_b)
 		tmp_b = tmp_b->next;
 	}
 	if (target <= (ft_lstsize(stack_b) / 2))
+	{
+		instructions()->m_b = 1;
+		instructions()->mb_to_top = 1;
 		return (target);
+	}
+	instructions()->m_b = 1;
+	instructions()->mb_to_bottom = 1;
 	return (target = ft_lstsize(stack_b) - target + 2);
 }
 
@@ -64,7 +72,13 @@ int	check_stack_a_moves(t_list *stack_a, t_list *stack_b)
 		tmp_a = tmp_a->next;
 	}
 	if (target <= (ft_lstsize(stack_a) / 2))
+	{
+		instructions()->m_a = 1;
+		instructions()->ma_to_top = 1;
 		return (target);
+	}
+	instructions()->m_a = 1;
+	instructions()->ma_to_bottom = 1;
 	return (ft_lstsize(stack_a) - target + 2);
 }
 
@@ -73,7 +87,7 @@ int	check_both_moves(t_list *stack_a, t_list *stack_b)
 {
 	t_list	*tmp_a;
 	t_list	*tmp_b;
-	int			target;
+	int		target;
 
 	target = 0;
 	tmp_a = stack_a;
@@ -82,16 +96,19 @@ int	check_both_moves(t_list *stack_a, t_list *stack_b)
 	{
 		target++;
 		if (*(int *)tmp_a->content == (*(int *)tmp_b->content - 1))
+		{
+			instructions()->m_bb = 1;
 			break ;
+		}
 		tmp_a = tmp_a->next;
 		tmp_b = tmp_b->next;
 	}
-	if (ft_lstsize(stack_a) > ft_lstsize(stack_b))
+	if (ft_lstsize(stack_a) > ft_lstsize(stack_b) && instructions()->m_bb == 1)
 	{
 		if (target <= (ft_lstsize(stack_a) / 2))
 			return (target);
 	}
-	else if (ft_lstsize(stack_a) == ft_lstsize(stack_b))
+	else if (ft_lstsize(stack_a) == ft_lstsize(stack_b) && instructions()->m_bb == 1)
 	{
 		if (target <= (ft_lstsize(stack_a) / 2))
 			return (target);

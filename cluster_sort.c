@@ -6,11 +6,28 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 08:58:21 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/11/06 21:05:24 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/11/11 18:50:11 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	reset(void)
+{
+	(*instructions()) = (t_instructions){0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+}
+
+void	check_stack_a(t_list **stack_a)
+{
+	t_list *tmp;
+
+	tmp = *stack_a;
+	while (tmp && *(int *)tmp->content != 0)
+	{
+		ft_rotate_a(stack_a, 0);
+		tmp = *stack_a;
+	}
+}
 
 void	pushing_b(t_list **stack_a, t_list **stack_b, int *arr, int seq)
 {
@@ -50,8 +67,8 @@ void	pushing_b(t_list **stack_a, t_list **stack_b, int *arr, int seq)
 			i = 0;
 		}
 	}
-	print_list_a(stack_a);
-	print_list_b(stack_b);
+	// print_list_a(stack_a);
+	// print_list_b(stack_b);
 }
 
 int	*create_lis_arr(t_list **stack_a, t_list **stack_b, int value, int seq)
@@ -89,9 +106,47 @@ int	*create_lis_arr(t_list **stack_a, t_list **stack_b, int value, int seq)
 	// 	i++;
 	// }
 	pushing_b(stack_a, stack_b, arr, seq);
-	printf("\nmove_b: %d\n", check_stack_b_moves(*stack_a, *stack_b));
-	printf("\nmove_a: %d\n", check_stack_a_moves(*stack_a, *stack_b));
-	printf("\nmove_both: %d\n", check_both_moves(*stack_a, *stack_b));
+	//! This should be placed in a loop while (ft_lstsize(stack_b) != 0);
+	while (ft_lstsize(*stack_b) != 0)
+	{
+		print_list_a(stack_a);
+		print_list_b(stack_b);
+		instructions()->mov_a = check_stack_a_moves(*stack_a, *stack_b);
+		if (ft_lstsize(*stack_b) != 1) //! if not will get a segfault when having only one element;
+			instructions()->mov_b = check_stack_b_moves(*stack_a, *stack_b);
+		instructions()->mov_bb = check_both_moves(*stack_a, *stack_b);
+		printf("\nmove_a: %d\n", instructions()->mov_a);
+		printf("\nmove_b: %d\n", instructions()->mov_b);
+		printf("\nmove_both: %d\n", instructions()->mov_bb);
+		printf("modes:\nma_to_top:%d\nma_to_bottom:%d\nmb_to_top:%d\nmb_to_bottom:%d\nm_a:%d\nm_b:%d\nm_bb:%d\n", instructions()->ma_to_top, instructions()->ma_to_bottom, instructions()->mb_to_top, instructions()->mb_to_bottom, instructions()->m_a, instructions()->m_b, instructions()->m_bb);
+		if (instructions()->mov_bb == 0)
+		{
+			if (instructions()->mov_a < instructions()->mov_b || instructions()->mov_b == 0)
+				ex_mov_a(stack_a, stack_b);
+			else
+				ex_mov_b(stack_a, stack_b);
+		}
+		else if (instructions()->mov_b == 0)
+		{
+			if (instructions()->mov_a < instructions()->mov_bb || instructions()->mov_bb == 0)
+				ex_mov_a(stack_a, stack_b);
+			else
+				ex_mov_bb(stack_a, stack_b);
+		}
+		else
+		{
+			if (instructions()->mov_a < instructions()->mov_b && instructions()->mov_a < instructions()->mov_bb)
+				ex_mov_a(stack_a, stack_b);
+			else if (instructions()->mov_b < instructions()->mov_a && instructions()->mov_b < instructions()->mov_bb)
+				ex_mov_b(stack_a, stack_b);
+			else
+				ex_mov_bb(stack_a, stack_b);
+		}
+		reset();
+	}
+	check_stack_a(stack_a);
+	print_list_a(stack_a);
+	print_list_b(stack_b);
 	return (arr);
 }
 

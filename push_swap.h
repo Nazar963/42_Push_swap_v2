@@ -6,7 +6,7 @@
 /*   By: naal-jen <naal-jen@student.42firenze.it    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 20:55:13 by naal-jen          #+#    #+#             */
-/*   Updated: 2023/11/06 20:42:10 by naal-jen         ###   ########.fr       */
+/*   Updated: 2023/11/11 17:45:22 by naal-jen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,22 @@ typedef struct s_loco
 {
 	long int	*value;
 }	t_loco;
+
+typedef struct s_instructions
+{
+	int	mov_a;
+	int	mov_b;
+	int	mov_bb;
+	int	ma_to_top;
+	int	ma_to_bottom;
+	int	mb_to_top;
+	int	mb_to_bottom;
+	int	m_a;
+	int	m_b;
+	int	m_bb;
+}	t_instructions;
+t_instructions *instructions(void);
+
 
 //--------------- main.c ------------------------------
 int		ft_check_duplicates(int ac, char **av);
@@ -86,5 +102,9 @@ void	print_list_b(t_list **stack_a);
 int	check_stack_b_moves(t_list *stack_a, t_list *stack_b);
 int	check_stack_a_moves(t_list *stack_a, t_list *stack_b);
 int	check_both_moves(t_list *stack_a, t_list *stack_b);
+
+void	ex_mov_a(t_list **stack_a, t_list **stack_b);
+void	ex_mov_b(t_list **stack_a, t_list **stack_b);
+void	ex_mov_bb(t_list **stack_a, t_list **stack_b);
 
 #endif
